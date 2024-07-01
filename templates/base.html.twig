@@ -20,14 +20,14 @@
 <header data-bs-theme="dark">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">La Boutique Française</a>
+            <a class="navbar-brand" href="{{path('app_home')}}">La Boutique Française</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{path('app_home')}}">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -40,7 +40,11 @@
                     </li>
                 </ul>
                 <div class="speed-menu">
-                    <a href=""><i data-feather="user"></i></a>
+                    {% if app.user %}
+                        <a href="{{path('app_account')}}"><i data-feather="user"></i>{{app.user.firstname}}</a>
+                    {% else %}
+                         <a href="{{path('app_login')}}"><i data-feather="user"></i></a>
+                    {% endif %}
                     <a href=""><i data-feather="shopping-cart"></i></a>
                 </div>
             </div>
@@ -50,12 +54,31 @@
 
 <main>
     {% block body %}{% endblock %}
-    <!-- FOOTER -->
-    <footer class="container">
-        <p>&copy; 2017–2024 La Boutique Française <a href="#">CGV</a> &middot; <a href="#">CGU</a></p>
-    </footer>
+   
+    
 </main>
-
+ <!-- FOOTER -->
+<footer class="text-center bg-dark text-light py-4">
+         <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Informations légales</h4>
+                    <p>Adresse: 123 Rue de Paris, Paris, France<br>Email : contact@chaussure-chic.com<br>Téléphone :+33 1 23 45 67 89<br>&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Navigation</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="" class="text-decoration-none text-white">À propos de nous</a></li>
+                        <li><a href="" class="text-decoration-none text-white">Page d'accueil</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contactez-nous</h4>
+                    <p><a href="" class="text-decoration-none text-white">Formulaire de contact</a><br>Email : contact@chaussure-chic.com<br>Téléphone :+33 1 23 45 67 89</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/js/global.js')}}"></script>
 </body>

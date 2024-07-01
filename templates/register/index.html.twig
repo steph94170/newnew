@@ -58,7 +58,14 @@
                             </div>
                         </div>
                     {{ form_end(registrationForm)}}
+                    <div class="my-3 text-center">
+
+                        <p> Vous avez déjà un compte? <a href="{{path('app_login')}}">Connectez-vous</a></p>
+
+                        <p> <a href="{{path('app_home')}}">Retour à l'accueil</a> </p>
+
+                    </div>
                 </div>
-            </div>
+            </div>     
     </div>
 {% endblock %}
