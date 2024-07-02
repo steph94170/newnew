@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
-
 {% block body %}
-    <div class="container">Espace menbre privé</div>
-    <div>
-        <a href="{{path('app_logout')}}">Me déconnecter</a>
-        <a href="">Modifier mon mot de passe</a>
+    <div class='container my-5'>
+        <div class="row">
+            <div class='md-4'>
+                 {% include 'account/_menu.html.twig' %}
+            </div>
+             <div class='md-8'>
+            
+            </div>
+        </div>
     </div>
 {% endblock %}
