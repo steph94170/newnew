@@ -15,7 +15,11 @@ class CategoryController extends AbstractController
         
         $category = $categoryRepository->findOneBySlug($slug);
         
-
+        //redirection vers la page d'accueil si l'utilisateur cherche une catégorie qui n'existe pas
+        if(! $category)
+        {
+            return $this->redirectToRoute('app_home');
+        }
 
         //1 jouvre une connexion avec la base de donner
 
