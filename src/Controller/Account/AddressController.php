@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Account;
 
 use App\Entity\Address;
 use App\Form\AddressUserType;
-use App\Form\PasswordUserType;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class AccountController extends AbstractController
+class AddressController extends AbstractController
 {
     private $entityManager;
 
@@ -21,41 +19,11 @@ class AccountController extends AbstractController
     {
        $this->entityManager = $entityManager;
     }
-
-    #[Route('/compte', name: 'app_account')]
+    
+    #[Route('/compte/addresses', name: 'app_account_addresses')]
     public function index(): Response
     {
-        return $this->render('account/index.html.twig');
-    }
-
-    #[Route('/compte/modifier_mot_de_passe', name: 'app_account_modify_pwd')]
-    public function password(Request $request,UserPasswordHasherInterface $passwordHasher): Response
-    {
-        $user =  $this->getUser();
-       
-        $form= $this->createForm(PasswordUserType::class, $user, [
-            'passwordHasher' => $passwordHasher,
-        ]);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {  
-             //enregistre l'information
-             $this->entityManager->flush();
-
-             $this->addFlash('success', 'Votre mot de passe a été mis a jour.');
-
-        }
-        
-        return $this->render('account/password.html.twig',[
-            'modifyPwd' => $form->createView()
-        ]);
-    }
-
-    #[Route('/compte/addresses', name: 'app_account_addresses')]
-    public function address(): Response
-    {
-        return $this->render('account/addresses.html.twig');
+        return $this->render('account/address/index.html.twig');
     }
 
     #[Route('/compte/address/delete/{id}', name: 'app_account_address_delete')]
@@ -75,7 +43,7 @@ class AccountController extends AbstractController
 
 
     #[Route('/compte/adresse/ajouter{id}', name: 'app_account_address_form', defaults:['id'=>null])]
-    public function addressForm(Request $request, $id, AddressRepository $addressRepository): Response
+    public function Form(Request $request, $id, AddressRepository $addressRepository): Response
     {
         if ($id) {
             $address = $addressRepository->findOneById($id);
@@ -105,7 +73,7 @@ class AccountController extends AbstractController
 
         }
 
-        return $this->render('account/addressForm.html.twig', [
+        return $this->render('account/address/form.html.twig', [
             'addressForm' => $form
         ]);
     }
