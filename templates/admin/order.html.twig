@@ -3,8 +3,11 @@
 {% block main %}
     
     <h3>Commande n°{{order.id}}</h3>
-    <span>Passé le : {{order.createdAt|date('d/m/Y')}}</span>
     {{include ('admin/state.html.twig', {field : {'value' : order.state}}) }}
+    <br>
+    <span>Passé le : {{order.createdAt|date('d/m/Y')}}</span> <br>
+    <span>Stripe Session Id : {{order.stripeSessionId}}</span>
+    
     <div class="row my-4">
         <div class="col-md-6">
             <strong>Adresse de livraison</strong>
