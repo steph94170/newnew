@@ -29,11 +29,14 @@ class CartController extends AbstractController
     public function add($id , Cart $cart, ProductRepository $productRepository, Request $request): Response
     {
         $product = $productRepository->findOneById($id);
+        $size = $request->request->get('size');
 
-
-        $cart->add($product);
-        
-        $this->addFlash('success', 'Produit ajouté à votre panier.');
+        if ($size) {
+            $cart->add($product, $size);
+            $this->addFlash('success', 'Produit ajouté à votre panier.');
+        } else {
+            $this->addFlash('error', 'Veuillez sélectionner une taille.');
+        }
 
         return $this->redirect($request->headers->get('referer'));
     }

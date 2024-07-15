@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -47,7 +48,9 @@ class ProductCrudController extends AbstractCrudController
             ChoiceField::new('tva')->setLabel('Taux de tva')->setChoices(['5,5%'=>'5,5', '20%'=>'20']),
             ImageField::new('illustration')->setLabel('Image')->setHelp("L'image du produit en 600x600px")->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')->setBasePath('/uploads')->setUploadDir('/public/uploads')->setRequired($required),
             TextEditorField::new('description')->setLabel('Description')->setHelp('Description de votre produit'),
-            AssociationField::new('category')->setLabel('Categorie associée')
+            AssociationField::new('category')->setLabel('Categorie associée'),
+            ArrayField::new('availableSizes')->setLabel('Tailles disponibles')->setHelp('Les tailles disponibles pour ce produit')
+
         ];
     }
     
