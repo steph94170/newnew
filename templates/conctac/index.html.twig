@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class='container my-5 small-container text-center'>
+        <h1>Formulaire de contact </h1>
+            <div class="row shadow">
+                    {{form_start(contactForm)}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="">Prénom</label>
+                                    {{form_widget(contactForm.firstName, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="">Nom</label>
+                                    {{form_widget(contactForm.lastName, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="">Email</label>
+                                    {{form_widget(contactForm.email, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="">Numéro de téléphone</label>
+                                    {{form_widget(contactForm.phone, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Message</label>
+                            {{form_widget(contactForm.message, {'attr': {'class': 'form-control', 'rows': 4}})}}
+                        </div>
+                        <div class="mb-3">
+                            <input formnovalidate type="submit" class="btn btn-primary">
+                        </div>
+                    {{form_end(contactForm)}}
+            </div>
+        </div>
+{% endblock %}

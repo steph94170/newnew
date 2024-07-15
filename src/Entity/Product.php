@@ -40,7 +40,22 @@ class Product
 
     #[ORM\Column(nullable: true)]
     private ?bool $isHomePage = null;
+//µµµµµµµµµµµµµµµµµµµµµµµµµµ
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $availableSizes = [];
 
+    public function getAvailableSizes(): ?array
+    {
+        return $this->availableSizes;
+    }
+
+    public function setAvailableSizes(?array $availableSizes): self
+    {
+        $this->availableSizes = $availableSizes;
+
+        return $this;
+    }
+//llllllllllllllllllllllllllllllllllllll
     public function getId(): ?int
     {
         return $this->id;
