@@ -7,12 +7,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -39,6 +40,7 @@ class ProductCrudController extends AbstractCrudController
         return [
         
             TextField::new('name')->setLabel('Nom')->setHelp('Nom de votre produit'),
+            BooleanField::new('isHomePage')->setLabel('Produit à la une ?')->setHelp("Vous permet d'afficher un produit sur la page d'accueil"),
             NumberField::new('size')->setLabel('Taille')->setHelp('La taille de votre produit en unités numériques'),
             SlugField::new('slug')->setLabel('URL')->setTargetFieldName('name')->setHelp('URL de votre catégorie générée automatiquement'),
             NumberField::new('price')->setLabel('Prix')->setHelp('Le prix H.T du produit sans le sigle €'),
