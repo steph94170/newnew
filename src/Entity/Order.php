@@ -35,6 +35,14 @@ class Order
     #[ORM\OneToMany(targetEntity: OrderDetail::class, cascade:['persist'], mappedBy: 'myOrder')]
     private Collection $orderDetails;
 
+
+    /*
+     * 1 : En attente de paiement
+     * 2 : Paiement validé
+     * 3 : En cours de préparation
+     * 4 : Expédié
+     * 5 : Annulée
+     */
     #[ORM\Column]
     private ?int $state = null;
 

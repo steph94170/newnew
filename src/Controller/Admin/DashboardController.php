@@ -40,7 +40,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Projet Final');
+            ->setTitle('Chaussure-chic');
+            
     }
 
     public function configureMenuItems(): iterable
@@ -53,5 +54,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Order::class);
         yield MenuItem::linkToCrud('Header', 'fas fa-list', Header::class);
         yield MenuItem::linkToCrud('Contact', 'fas fa-list', Contact::class);
+
     }
 }
