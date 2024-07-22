@@ -11,28 +11,20 @@
                 <h1>{{ product.name }}</h1>
                 <span class='d-block mb-3'>{{ product.priceWt|price }}</span>
                 {{ product.description|raw }}
-
-                <form action="{{ path('app_cart_add', {id: product.id}) }}" method="POST" class="mt-3">
-                    <div class="custom-dropdown variants-dropdown custom-dropdown--no-swap col-12 custom-dropdown--opened">
-                        <div class="custom-dropdown__current-item">
-                            <div class="custom-dropdown__placeholder-right">
-                                Choisir la taille <span class="size-default-label">(FR)</span>
-                            </div>
-                            <div class="custom-dropdown__arrow"></div>
-                            <ul class="custom-dropdown-items-container">
+                <div class="container mt-5">
+                    <form action="{{ path('app_cart_add', {id: product.id}) }}" method="POST">
+                        <div class="mb-3">
+                            <label for="size" class="form-label">Choisir la taille <span class="size-default-label">(FR)</span></label>
+                            <div class="btn-group w-100" role="group">
                                 {% for size in product.availableSizes %}
-                                    <li class="custom-dropdown__item variant {% if loop.first %}custom-dropdown__item--selected{% endif %}" data-value="{{ size }}">
-                                        <label for="size-{{ size }}">
-                                            <input type="radio" id="size-{{ size }}" name="size" value="{{ size }}" {% if loop.first %}checked{% endif %}>
-                                            <span class="variant-attribute-name">{{ size }}</span>
-                                        </label>
-                                    </li>
+                                    <input type="radio" class="btn-check" id="size-{{ size }}" name="size" value="{{ size }}" {% if loop.first %}checked{% endif %}>
+                                    <label class="btn btn-outline-secondary" for="size-{{ size }}">{{ size }}</label>
                                 {% endfor %}
-                            </ul>
+                            </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-success w-100 mt-3">Ajouter au panier</button>
-                </form>
+                        <button type="submit" class="btn btn-success w-100 mt-3">Ajouter au panier</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
