@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <style>
+       .text-center {
+           text-align: center;
+       }
+
+       .text-right {
+           text-align: right;
+       }
+
+       .text-left {
+           text-align: left;
+       }
+
+       body {
+           font-family: Roboto, sans-serif;
+       }
+
+       table {
+           border-collapse: collapse;
+       }
+       table td, table th {
+           padding:0.5rem;
+           border-top: 1px solid #ccc;
+       }
+    </style>
+</head>
+<body>
+<div class="text-center">
+{# mettre un logo ici avec base64 #}
+<h3>Facture commande n°{{ order.id }}</h3>
+<table style="width: 100%;border-bottom:1px solid gray;">
+    <tr>
+        <td style="width: 49%;">
+            <strong>Chaussure-Chic</strong><br/>
+            Adresse: 123 Rue de Paris, Paris, France<br>
+            Email : contact@chaussure-chic.com<br>
+            Téléphone :+33 1 23 45 67 89
+            <br>&copy; 2024 Votre Entreprise. Tous droits réservés.
+        </td>
+        <td class="text-right">
+            {{ order.delivery|raw }}
+        </td>
+    </tr>
+</table>
+</div>
+<h5>Votre commande</h5>
+<table style="width: 100%;">
+    <thead>
+    <tr>
+        <th scope="col" class="text-left">Produit</th>
+        <th scope="col" class="text-left">Quantité</th>
+        <th scope="col" class="text-left">Prix unitaire H.T</th>
+        <th scope="col" class="text-left">TVA</th>
+        <th scope="col" class="text-right">Total T.T.C</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in order.orderDetails %}
+        <tr>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productQuantity }}</td>
+            <td>{{ product.productPrice|price }}</td>
+            <td>{{ product.productTva }}%</td>
+            {% set coeff = 1 + (product.productTva / 100) %}
+
+            <td class="text-right">{{ ((product.productPrice * coeff) * product.productQuantity)|price }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td>{{ order.carrierName }}</td>
+        <td>1</td>
+        <td></td>
+        <td></td>
+        <td class="text-right">{{ order.carrierPrice|price }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="text-right" style="margin-top: 10px;">
+    <strong>Total H.T : </strong> {{ (order.totalWt - order.totalTva)|price }}<br/>
+    <strong>Total TVA : </strong> {{ order.totalTva|price }}<br/>
+    <strong>Total T.T.C : </strong> {{ order.totalWt|price }}
+</div>
+
+</body>
+</html>

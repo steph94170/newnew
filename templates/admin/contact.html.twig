@@ -1,0 +1,30 @@
+{# templates/admin/contact.html.twig #}
+
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
+        <h1 class="mb-4">Message</h1>
+
+        <table class="table table-bordered w-50">
+            <tbody>
+                <tr>
+                    <th scope="row">Prénom</th>
+                    <td>{{ contact.firstname }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nom</th>
+                    <td>{{ contact.lastname }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td>{{ contact.email }}</td>
+                </tr>
+                <tr>
+                     <th scope="row">Message</th>
+                    <td class="text-wrap" style="word-break: break-word;">{{ contact.message }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
