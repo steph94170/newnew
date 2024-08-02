@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                <div class="bg-light p-3">
+                <div class="p-3">
                    <strong>Contenu de mon panier </strong> <br>
                     {% for product in cart %}
                         <div class="row mt-2">   
@@ -26,20 +26,20 @@
                         </div>   
                     {% endfor %}
                 </div>
-                     <div class="bg-light p-3 my-3">
+                     <div class="p-3 my-3">
                         <strong>Votre de adresse de livraison :</strong> <br>
                         {{choices.addresses.firstName}} {{choices.addresses.lastName}} <br>
                         {{choices.addresses.address}} <br>
                         {{choices.addresses.city}}  - {{choices.addresses.country}} 
                     </div>
-                    <div class="bg-light p-3">
+                    <div class="p-3">
                         <strong> Votre transporteur :</strong><br>
                         {{choices.carriers.name}}<br>
                         {{choices.carriers.description}}
                     </div>
             </div>
-            <div class="col-md-4">
-                <div class="bg-light p-3"> 
+            <div class=" shadow col-md-4">
+                <div class="p-3"> 
                     <div class='d-flex justify-content-between'>
                         <span class='fw-bold'>Total produit :</span>
                         <span>{{fullCartQuantity}}</span>

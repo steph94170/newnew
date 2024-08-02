@@ -1,8 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Accueil{% endblock %}
+
+{% block description %}Accueil{% endblock %}
+
+{% block keywords %} Chaussure,Chic,Accueil{% endblock %}
+
 {% block body %}
 
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div id="myCarousel"  class="carousel slide mb-6" data-bs-ride="carousel " >
         <div class="carousel-indicators">
             {% if headers|length > 1  %}  
                 {% for key, header in headers %}
@@ -14,7 +20,7 @@
             {% for key, header in headers %}
             {# la class bootstrap active doit etre present sur le premiere élément  #}
                 <div class="carousel-item {% if key == 0  %} active {% endif %} "> 
-                    <img  src="/uploads/{{header.illustration}}"class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+                    <img alt="image" src="/uploads/{{header.illustration}}"class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
                     <div class="container">
                         <div class="carousel-caption text-start">
                             <h1>{{header.title}}</h1>
@@ -48,7 +54,7 @@
         <div class="row">
             {% for product in productsInHomePage %}
                 <div class="col-lg-4">
-                    <img src="/uploads/{{product.illustration}}" alt="" class='img-fluid'>
+                    <img src="/uploads/{{product.illustration}}" alt="chaussure" class='img-fluid'>
                     <h2 class="fw-normal">{{product.name}}</h2>
                     <div style="font-size: 13px">
                         {{product.description|raw}}

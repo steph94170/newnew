@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Produit{% endblock %}
+
+{% block description %}Produit{% endblock %}
+
+{% block keywords %} Chaussure,Chic, Produit, categorie{% endblock %}
+
 {% block body %}
     <div class='container my-5'>
         <div class="row">
@@ -22,7 +28,33 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success w-100 mt-3">Ajouter au panier</button>
+                        
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                                <button type="submit" class="btn btn-success w-100 mt-3">Ajouter au panier</button>
+
+                            {% if app.user %}
+                                {% if product in app.user.wishlists %}
+                                    <a class="wishlist-icon wishlist-icon-active" href="{{ path('app_account_wishlist_remove', { id : product.id } ) }}" style="margin-left: 10px;">
+                                        <i data-feather="heart"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="wishlist-icon" href="{{ path('app_account_wishlist_add', { id : product.id } ) }}" style="margin-left: 10px;">
+                                        <i data-feather="heart"></i>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="margin-left: 10px;">
+                                    <i data-feather="heart"></i>
+                                </a>
+                            {% endif %}
+                            
+                        </div>
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="mt-2">
+                                Pour utiliser les avantages de la Wishlist, <a href="{{ path('app_login') }}">connectez-vous</a> ou <a href="{{ path('app_register') }}">créez votre compte</a> client.
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
