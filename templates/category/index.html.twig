@@ -11,7 +11,7 @@
         <h1>{{category.name}}</h1>
 
         <p>Cette catégorie contient {{category.products|length }}</p>
-       
+
         <div class="row">
             {% for product in category.products %}
                 <div class="col-md-3 text-center">
@@ -23,6 +23,6 @@
                 </div>
             {% endfor %}
         </div>
-       
+
     </div>
 {% endblock %}

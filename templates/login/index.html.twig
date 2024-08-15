@@ -23,7 +23,14 @@
                     <input type="password" class="form-control" id="password" name="_password">
                 </div>
 
-                <input type="hidden" name="_target_path" value="{{path('app_account')}}">
+                <!-- Champ caché pour le CSRF token -->
+                <!-- Ce champ est essentiel pour la sécurité de votre formulaire. Il génère un token CSRF unique pour chaque session utilisateur, empêchant les attaques de type CSRF.
+                Symfony vérifie ce token lors de la soumission du formulaire. -->
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <!-- Champ caché pour définir la redirection après connexion -->
+                <!-- Le champ _target_path définit l'URL vers laquelle l'utilisateur sera redirigé après une connexion réussie. Ici, il est configuré pour rediriger l'utilisateur vers la page "app_account" après la connexion. -->
+                <input type="hidden" name="_target_path" value="{{ path('app_account') }}">
 
                 <button type="submit" class="btn btn-success mt-3">Connexion</button>
             </form>
