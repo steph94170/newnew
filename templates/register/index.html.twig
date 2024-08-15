@@ -31,13 +31,75 @@
                     {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
                 </div>
                 <div class="mb-3">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                </div>
+                <div class="mb-3">
                     <input type="submit" class="btn btn-success shadow w-100" value="S'inscrire">
                 </div>
             </div>
+          
             {{ form_end(registrationForm) }}
             <div class="my-3 text-center">
                 <p>Vous avez déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous</a></p>
                 <p><a href="{{ path('app_home') }}">Retour à l'accueil</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Conditions générales d'utilisation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>1. Objet</h2>
+                <p>Les présentes Conditions Générales d'Utilisation (ci-après « CGU ») ont pour objet de définir les modalités et conditions dans lesquelles les utilisateurs (ci-après « Utilisateur » ou « Vous ») peuvent accéder et utiliser le site Chaussure-Chic (ci-après « le Site »), accessible à l'adresse www.chaussure-chic.com.</p>
+
+                <h2>2. Acceptation des CGU</h2>
+                <p>L'accès et l'utilisation du Site sont soumis à l'acceptation sans réserve des présentes CGU. En utilisant le Site, Vous reconnaissez avoir pris connaissance des CGU et les accepter. Si Vous n'acceptez pas ces conditions, Vous n'êtes pas autorisé à utiliser le Site.</p>
+
+                <h2>3. Accès au site</h2>
+                <p>Le Site est accessible gratuitement à tout Utilisateur disposant d'un accès à internet. Tous les frais liés à l'accès au Site (matériel informatique, logiciels, connexion internet, etc.) sont à la charge de l'Utilisateur. Le Site est accessible 24h/24 et 7j/7, sauf interruption, programmée ou non, pour les besoins de sa maintenance ou en cas de force majeure.</p>
+
+                <h2>4. Inscription et compte utilisateur</h2>
+                <p>Pour accéder à certaines fonctionnalités du Site, telles que l'achat de produits ou la gestion des commandes, l'Utilisateur doit créer un compte en fournissant des informations exactes, complètes et à jour. L'Utilisateur est responsable de la confidentialité de ses identifiants et mot de passe. Toute activité réalisée depuis son compte est réputée être effectuée par l'Utilisateur.</p>
+
+                <h2>5. Utilisation du site</h2>
+                <p>L'Utilisateur s'engage à utiliser le Site de manière responsable, en conformité avec les lois et règlements en vigueur. En particulier, il est interdit :</p>
+                <ul>
+                    <li>De diffuser des contenus illégaux, diffamatoires, obscènes, offensants ou susceptibles de porter atteinte aux droits d'autrui.</li>
+                    <li>D'utiliser le Site pour harceler, menacer ou nuire à autrui.</li>
+                    <li>De perturber le bon fonctionnement du Site, notamment par l'utilisation de virus ou tout autre programme malveillant.</li>
+                    <li>D'utiliser le Site à des fins commerciales autres que celles prévues par Chaussure-Chic, telles que la revente de produits achetés sur le Site sans autorisation.</li>
+                </ul>
+
+                <h2>6. Produits et prix</h2>
+                <p>Les produits proposés à la vente sur le Site sont décrits et présentés avec la plus grande exactitude possible. Toutefois, Chaussure-Chic ne saurait être tenu responsable des erreurs ou omissions dans ces descriptions. Les prix des produits sont indiqués en euros, toutes taxes comprises (TTC), hors frais de livraison. Chaussure-Chic se réserve le droit de modifier les prix à tout moment, mais les produits seront facturés sur la base des tarifs en vigueur au moment de la validation de la commande.</p>
+
+                <h2>7. Propriété intellectuelle</h2>
+                <p>Tous les éléments présents sur le Site (textes, images, logos, marques, designs, etc.) sont la propriété exclusive de Chaussure-Chic ou de ses partenaires et sont protégés par les lois en vigueur sur la propriété intellectuelle. Toute reproduction, distribution, modification ou utilisation de ces contenus sans autorisation expresse est interdite.</p>
+
+                <h2>8. Données personnelles</h2>
+                <p>Les informations personnelles recueillies lors de l'inscription ou de l'achat de produits sont utilisées conformément à notre Politique de Confidentialité. En utilisant le Site, Vous consentez à la collecte et à l'utilisation de vos données personnelles conformément à cette politique.</p>
+
+                <h2>9. Responsabilité</h2>
+                <p>Chaussure-Chic s'efforce d'assurer au mieux l'exactitude et la mise à jour des informations diffusées sur le Site, mais ne saurait garantir leur exactitude, complétude ou actualité. Chaussure-Chic décline toute responsabilité en cas de dommage direct ou indirect résultant de l'utilisation du Site ou de l'impossibilité d'y accéder.</p>
+
+                <h2>10. Modification des CGU</h2>
+                <p>Chaussure-Chic se réserve le droit de modifier à tout moment les présentes CGU. Les modifications prendront effet dès leur publication sur le Site. L'Utilisateur est invité à consulter régulièrement les CGU pour se tenir informé des éventuelles modifications.</p>
+
+                <h2>11. Loi applicable et juridiction compétente</h2>
+                <p>Les présentes CGU sont régies par la loi française. Tout litige relatif à l'exécution ou à l'interprétation des présentes CGU sera de la compétence exclusive des tribunaux français.</p>
+
+                <h2>12. Contact</h2>
+                <p>Pour toute question relative aux présentes CGU, Vous pouvez contacter Chaussure-Chic à l'adresse suivante : <a href="{{path('app_conctac')}}">contact@chaussure-chic.com</a>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">J'accepte</button>
             </div>
         </div>
     </div>

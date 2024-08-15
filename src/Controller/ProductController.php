@@ -9,16 +9,19 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProductController extends AbstractController
 {
+    // Définition de la route pour accéder à un produit spécifique par son slug
     #[Route('/produit/{slug}', name: 'app_product')]
     public function index($slug, ProductRepository $productRepository): Response
     {
-        $product= $productRepository->findOneBySlug($slug);
+        // Récupération du produit correspondant au slug fourni
+        $product = $productRepository->findOneBySlug($slug);
 
-        if(! $product)
-        {
+        // Si le produit n'existe pas, redirection vers la page d'accueil
+        if (!$product) {
             return $this->redirectToRoute('app_home');
         }
 
+        // Rendu de la vue 'product/index.html.twig' avec les données du produit
         return $this->render('product/index.html.twig', [
             'product' => $product,
         ]);
