@@ -8,34 +8,46 @@
         </div>
         <div class="col-md-6">
             <h1 class="text-center my-3">Connexion</h1>
+     
             {% if error %}
+                <!-- Affichage sécurisé du message d'erreur -->
+                <!-- Le message d'erreur est échappé par Twig pour éviter les injections XSS -->
                 <div class="text-center alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             <form action="{{ path('app_login') }}" method="post">
                 <div class="form-group">
                     <label for="username">Email:</label>
-                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}">
+                    
+                    <!-- Ajout de l'attribut autocomplete="username" pour une meilleure UX -->
+                    <!-- Cet attribut guide les navigateurs sur la manière de compléter automatiquement ce champ -->
+                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" autocomplete="username" required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Mot de passe:</label>
-                    <input type="password" class="form-control" id="password" name="_password">
+                    
+                    <!-- Ajout de l'attribut autocomplete="current-password" pour sécuriser l'auto-complétion du mot de passe -->
+                    <!-- Cet attribut indique au navigateur qu'il s'agit du champ de mot de passe courant -->
+                    <input type="password" class="form-control" id="password" name="_password" autocomplete="current-password" required>
                 </div>
 
                 <!-- Champ caché pour le CSRF token -->
-                <!-- Ce champ est essentiel pour la sécurité de votre formulaire. Il génère un token CSRF unique pour chaque session utilisateur, empêchant les attaques de type CSRF.
-                Symfony vérifie ce token lors de la soumission du formulaire. -->
+                <!-- Ce token est essentiel pour protéger votre formulaire contre les attaques CSRF -->
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                 <!-- Champ caché pour définir la redirection après connexion -->
-                <!-- Le champ _target_path définit l'URL vers laquelle l'utilisateur sera redirigé après une connexion réussie. Ici, il est configuré pour rediriger l'utilisateur vers la page "app_account" après la connexion. -->
+                <!-- Ce champ définit l'URL vers laquelle l'utilisateur sera redirigé après une connexion réussie -->
                 <input type="hidden" name="_target_path" value="{{ path('app_account') }}">
 
                 <button type="submit" class="btn btn-success mt-3">Connexion</button>
             </form>
+
             <div class="mt-3">
+                <!-- Lien sécurisé vers la page d'inscription -->
                 Vous n'avez pas de compte ? <a href="{{ path('app_register') }}">Inscrivez-vous</a><br>
+                
+                <!-- Lien sécurisé vers la page de réinitialisation du mot de passe -->
                 <a href="{{ path('app_password') }}">Mot de passe oublié ?</a>
             </div>
         </div>
